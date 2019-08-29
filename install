@@ -1,0 +1,27 @@
+#!/bin/bash
+
+DEPLOY_ENV="env"
+DIR_LOCATION="`pwd`"
+
+RCol='\e[0m';
+Yel='\e[0;33m';
+Red='\e[0;31m';
+Gre='\e[0;32m';
+Divider='==============================================================';
+
+echo -e "${Yel}Search requirements\r${Divider}${RCol}\r";
+
+if [[ ! -d "$DIR_LOCATION/$DEPLOY_ENV" ]]
+    then
+        echo -e "${Red}Directory $DIR_LOCATION/$DEPLOY_ENV does not exists.${RCol}\r"
+        virtualenv -p python3 env
+else
+     echo -e "${Gre}Directory $DIR_LOCATION/$DEPLOY_ENV exists.${RCol}\r"
+fi
+
+cd $DIR_LOCATION
+. "$DIR_LOCATION/$DEPLOY_ENV/bin/activate"
+echo -e "${Gre}Installing  PIP Requirements\r${Divider}${RCol}\r";
+pip install -r requirements.txt
+
+echo -e "${Gre}Install was successful!\r${Divider}${RCol}\r";
