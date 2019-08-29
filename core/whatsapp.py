@@ -80,7 +80,3 @@ class Whatsapp:
         self.count = None
         self.name = None
         self.message = None
-
-
-start_app = Whatsapp()
-start_app.start()
